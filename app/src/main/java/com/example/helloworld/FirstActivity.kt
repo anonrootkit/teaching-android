@@ -3,6 +3,8 @@
 package com.example.helloworld
 
 import android.os.Bundle
+import android.text.TextUtils
+import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -18,7 +20,14 @@ class FirstActivity : AppCompatActivity() {
     private var EMAIL_MIN_SIZE : Int = 8
     private var CORRECT_EMAIL : String = "ankit@ankit.com"
     private var CORRECT_PASSWORD : String = "Ankit@ankit123"
-    private var passwordRegex : String = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=()])(?=\\S+$).{8,20}$"
+    private val passwordRegex : String = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=()])(?=\\S+$).{8,20}$"
+    private val emailRegex : String = "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
+                "\\@" +
+                "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
+                "(" +
+                "\\." +
+                "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
+                ")+"
 
 
     private lateinit var emailBox : EditText
@@ -41,7 +50,7 @@ class FirstActivity : AppCompatActivity() {
             val emailString : String = emailBox.text.toString()
             val passwordString : String = passwordBox.text.toString()
 
-            if (checkEmailValid(emailString)){
+            if (checkEmailValidUsingRegex(emailString)){
 
                 if (checkPasswordValidUsingRegex(passwordString)){
 
@@ -127,6 +136,19 @@ class FirstActivity : AppCompatActivity() {
             return false
         }
 
+    }
+
+
+    fun checkEmailValidUsingRegex(email: String) : Boolean {
+        val pattern: Pattern = Pattern.compile(emailRegex)
+
+        if (email.length < EMAIL_MIN_SIZE) {
+            return false
+        }
+
+        val matcher: Matcher = pattern.matcher(email)
+
+        return matcher.matches()
     }
 
 
