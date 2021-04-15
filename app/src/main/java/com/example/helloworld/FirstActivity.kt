@@ -2,6 +2,7 @@
 
 package com.example.helloworld
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Patterns
@@ -56,6 +57,11 @@ class FirstActivity : AppCompatActivity() {
 
                     val signInSuccessful : Boolean = signInUser(emailString, passwordString)
                     if (signInSuccessful){
+
+                        val openHomeActivityIntent : Intent = Intent(this, HomeActivity::class.java)
+                        startActivity(openHomeActivityIntent)
+                        finish()
+
                         Toast.makeText(this, "Welcome, Welcome! Ankit.", Toast.LENGTH_SHORT).show()
 
                     }else{
