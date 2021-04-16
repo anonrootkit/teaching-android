@@ -11,6 +11,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SwitchCompat
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
@@ -35,6 +36,7 @@ class FirstActivity : AppCompatActivity() {
     private lateinit var passwordBox : EditText
     private lateinit var signInButton : Button
     private lateinit var forgotPassword : TextView
+    private lateinit var signInSwitch : SwitchCompat
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,36 +47,43 @@ class FirstActivity : AppCompatActivity() {
         passwordBox = findViewById(R.id.password)
         signInButton = findViewById(R.id.sign_in_button)
         forgotPassword = findViewById(R.id.forgot_password)
+        signInSwitch = findViewById(R.id.sign_in_switch)
 
 
         signInButton.setOnClickListener {
             val emailString : String = emailBox.text.toString()
             val passwordString : String = passwordBox.text.toString()
+            val areYouHuman : Boolean = signInSwitch.isChecked
 
-            if (checkEmailValidUsingRegex(emailString)){
 
-                if (checkPasswordValidUsingRegex(passwordString)){
+            if (areYouHuman){
+                if (checkEmailValidUsingRegex(emailString)){
 
-                    val signInSuccessful : Boolean = signInUser(emailString, passwordString)
-                    if (signInSuccessful){
+                    if (checkPasswordValidUsingRegex(passwordString)){
 
-                        val openHomeActivityIntent : Intent = Intent(this, HomeActivity::class.java)
-                        startActivity(openHomeActivityIntent)
-                        finish()
+                        val signInSuccessful : Boolean = signInUser(emailString, passwordString)
+                        if (signInSuccessful){
 
-                        Toast.makeText(this, "Welcome, Welcome! Ankit.", Toast.LENGTH_SHORT).show()
+                            val openHomeActivityIntent : Intent = Intent(this, HomeActivity::class.java)
+                            startActivity(openHomeActivityIntent)
+                            finish()
+
+                            Toast.makeText(this, "Welcome, Welcome! Ankit.", Toast.LENGTH_SHORT).show()
+
+                        }else{
+                            Toast.makeText(this, "Wrong credentials!!!!", Toast.LENGTH_SHORT).show()
+
+                        }
 
                     }else{
-                        Toast.makeText(this, "Wrong credentials!!!!", Toast.LENGTH_SHORT).show()
-
+                        Toast.makeText(this, "Invalid Password", Toast.LENGTH_SHORT).show()
                     }
 
                 }else{
-                    Toast.makeText(this, "Invalid Password", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Invalid Email", Toast.LENGTH_SHORT).show()
                 }
-
             }else{
-                Toast.makeText(this, "Invalid Email", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Please join being human!", Toast.LENGTH_SHORT).show()
             }
         }
 
