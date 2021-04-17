@@ -10,17 +10,26 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Welcome, Ankit"
-        android:textSize="32sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:gravity="center_horizontal"
         android:fontFamily="monospace"
         android:layout_marginTop="16dp"
+        android:id="@+id/email"
+        tools:text="ankit@gmail.com"
         />
 
-    <CalendarView
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center_horizontal"
+        android:fontFamily="monospace"
+        android:layout_marginTop="16dp"
+        android:id="@+id/password"
+        tools:text="Password@poiw232"
         />
+
 
 </LinearLayout>

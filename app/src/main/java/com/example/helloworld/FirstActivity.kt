@@ -61,10 +61,17 @@ class FirstActivity : AppCompatActivity() {
 
                     if (checkPasswordValidUsingRegex(passwordString)){
 
-                        val signInSuccessful : Boolean = signInUser(emailString, passwordString)
+                        val signInSuccessful : Boolean = true
                         if (signInSuccessful){
 
                             val openHomeActivityIntent : Intent = Intent(this, HomeActivity::class.java)
+
+                            val bundle : Bundle = Bundle()
+                            bundle.putString("email_text", emailString)
+                            bundle.putString("password_text", passwordString)
+
+                            openHomeActivityIntent.putExtras(bundle)
+
                             startActivity(openHomeActivityIntent)
                             finish()
 
