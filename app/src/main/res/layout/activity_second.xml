@@ -18,9 +18,19 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:padding="24dp"
-            android:text="Sign In"
+            android:text="Create account"
             android:textSize="32sp"
             android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:hint="Name"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/email"
@@ -42,40 +52,35 @@
             android:hint="Password"
             android:inputType="textPassword" />
 
-        <androidx.appcompat.widget.SwitchCompat
-            android:layout_width="wrap_content"
+        <Spinner
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Are you human ? "
             android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            android:id="@+id/sign_in_switch"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:id="@+id/state_spinner"
             />
 
         <Button
-            android:id="@+id/sign_in_button"
+            android:id="@+id/create_account_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginStart="24dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="24dp"
-            android:text="Sign In"
+            android:text="Create account"
             android:background="@drawable/round_shape"
+            android:layout_marginBottom="16dp"
             android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/forgot_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:padding="16dp"
-            android:text="Forgot password?"
-            android:textStyle="bold" />
 
         <RelativeLayout
             android:id="@+id/or_label_container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+
+            >
 
             <View
                 android:layout_width="match_parent"
@@ -112,8 +117,8 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
-            android:text="Create Account"
-            android:id="@+id/create_account_button"
+            android:text="Sign In"
+            android:id="@+id/sign_in_button"
             android:background="@drawable/round_shape"
             app:backgroundTint="@color/teal_200"
             android:textColor="@color/white" />
