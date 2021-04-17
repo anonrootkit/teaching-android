@@ -16,7 +16,6 @@ class SecondActivity : AppCompatActivity() {
     private lateinit var createAccountButton: Button
     private lateinit var signInButton: Button
     private lateinit var statesSpinner: Spinner
-    private val statesList : ArrayList<String> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,9 +29,8 @@ class SecondActivity : AppCompatActivity() {
         signInButton = findViewById(R.id.sign_in_button)
         statesSpinner = findViewById(R.id.state_spinner)
 
-        initialiseStatesList()
-
-        val spinnerAdapter : ArrayAdapter<String> = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, statesList)
+        val spinnerAdapter: ArrayAdapter<String> =
+            ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, statesList)
         statesSpinner.adapter = spinnerAdapter
 
         createAccountButton.setOnClickListener {
@@ -47,15 +45,18 @@ class SecondActivity : AppCompatActivity() {
                     val createAccountSuccessful: Boolean = true
                     if (createAccountSuccessful) {
 
-                        val openHomeActivityIntent: Intent = Intent(this, HomeActivity::class.java)
+//                        val openHomeActivityIntent: Intent = Intent(this, HomeActivity::class.java)
+//
+//                        val bundle: Bundle = Bundle()
+//                        bundle.putString("email_text", emailString)
+//                        bundle.putString("password_text", passwordString)
+//
+//                        openHomeActivityIntent.putExtras(bundle)
+//
+//                        startActivity(openHomeActivityIntent)
 
-                        val bundle: Bundle = Bundle()
-                        bundle.putString("email_text", emailString)
-                        bundle.putString("password_text", passwordString)
-
-                        openHomeActivityIntent.putExtras(bundle)
-
-                        startActivity(openHomeActivityIntent)
+                        val openListActivityIntent : Intent = Intent(this, ListActivity::class.java)
+                        startActivity(openListActivityIntent)
                         finish()
 
                         Toast.makeText(this, "Welcome, Welcome! Ankit.", Toast.LENGTH_SHORT).show()
@@ -72,13 +73,18 @@ class SecondActivity : AppCompatActivity() {
         }
 
         signInButton.setOnClickListener {
-            val firstActivityIntent : Intent = Intent(this, FirstActivity::class.java)
+            val firstActivityIntent: Intent = Intent(this, FirstActivity::class.java)
             startActivity(firstActivityIntent)
             finish()
         }
 
-        statesSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        statesSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
                 val selectedState = statesList[position]
 
                 Toast.makeText(this@SecondActivity, selectedState, Toast.LENGTH_SHORT).show()
@@ -90,11 +96,4 @@ class SecondActivity : AppCompatActivity() {
         }
     }
 
-    private fun initialiseStatesList() {
-        statesList.add("Andhra")
-        statesList.add("Arunachal")
-        statesList.add("Delhi")
-        statesList.add("HP")
-        statesList.add("TM")
-    }
 }
