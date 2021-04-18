@@ -6,10 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Patterns
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
 import java.util.regex.Matcher
@@ -26,6 +23,7 @@ class FirstActivity : AppCompatActivity() {
     private lateinit var createAccountButton: Button
     private lateinit var forgotPassword : TextView
     private lateinit var signInSwitch : SwitchCompat
+//    private lateinit var ageSpinner : Spinner
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +36,16 @@ class FirstActivity : AppCompatActivity() {
         createAccountButton = findViewById(R.id.create_account_button)
         forgotPassword = findViewById(R.id.forgot_password)
         signInSwitch = findViewById(R.id.sign_in_switch)
+//        ageSpinner = findViewById(R.id.spinner)
 
+//        initialiseSpinner(
+//            context = this,
+//            spinner = ageSpinner,
+//            values = ArrayList<Int>().apply { add(1); add(2); add(3); add(4) },
+//            functionOnItemSelected = { position ->
+//                Toast.makeText(this, "Position : $position", Toast.LENGTH_SHORT).show()
+//            }
+//        )
 
         signInButton.setOnClickListener {
             val emailString : String = emailBox.text.toString()

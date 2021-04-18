@@ -27,11 +27,16 @@ class SecondActivity : AppCompatActivity() {
         passwordBox = findViewById(R.id.password)
         createAccountButton = findViewById(R.id.create_account_button)
         signInButton = findViewById(R.id.sign_in_button)
-        statesSpinner = findViewById(R.id.state_spinner)
+        statesSpinner = findViewById(R.id.spinner)
 
-        val spinnerAdapter: ArrayAdapter<String> =
-            ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, statesList)
-        statesSpinner.adapter = spinnerAdapter
+        initialiseSpinner(
+            context = this,
+            spinner = statesSpinner,
+            values = statesList,
+            functionOnItemSelected = { position ->
+                Toast.makeText(this, "$position", Toast.LENGTH_SHORT).show()
+            }
+        )
 
         createAccountButton.setOnClickListener {
             val emailString: String = emailBox.text.toString()
@@ -76,23 +81,6 @@ class SecondActivity : AppCompatActivity() {
             val firstActivityIntent: Intent = Intent(this, FirstActivity::class.java)
             startActivity(firstActivityIntent)
             finish()
-        }
-
-        statesSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                val selectedState = statesList[position]
-
-                Toast.makeText(this@SecondActivity, selectedState, Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
-            }
         }
     }
 
