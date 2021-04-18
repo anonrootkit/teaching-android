@@ -20,9 +20,7 @@ fun initialiseSpinner(
             functionOnItemSelected(position)
         }
 
-        override fun onNothingSelected(parent: AdapterView<*>?) {
-
-        }
+        override fun onNothingSelected(parent: AdapterView<*>?) {}
     }
 
 }
