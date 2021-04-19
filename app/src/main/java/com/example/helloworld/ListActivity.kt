@@ -1,7 +1,11 @@
 package com.example.helloworld
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.LinearLayout
 import android.widget.ListView
@@ -9,27 +13,51 @@ import android.widget.TextView
 
 class ListActivity : AppCompatActivity() {
 
-//    private lateinit var listView : ListView
-    private lateinit var listContainer : LinearLayout
+    private lateinit var listView: ListView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
 
-        listContainer = findViewById(R.id.list_container)
 
-        for (state in statesList){
+        listView = findViewById(R.id.listView)
 
-            val textView : TextView = TextView(this)
-            textView.text = state
+        val doubleValueList : ArrayList<DoubleValues> = ArrayList()
 
-            listContainer.addView(textView)
+        for (index in 0 until nameList.size){
+            val doubleValue : DoubleValues = DoubleValues(
+                name = nameList[index],
+                password = passwordList[index]
+            )
+            doubleValueList.add(doubleValue)
         }
 
-//        listView = findViewById(R.id.list_view)
-//        val listViewAdapter : ArrayAdapter<String> = ArrayAdapter(this, android.R.layout.simple_list_item_1, statesList)
-//        listView.adapter = listViewAdapter
+        val customAdapter : CustomArrayAdapter = CustomArrayAdapter(this, doubleValueList)
+        listView.adapter = customAdapter
+
+    }
+}
+
+data class DoubleValues(val name : String, val password : String)
+
+class CustomArrayAdapter(context: Context, doubleValueList : ArrayList<DoubleValues>)
+    : ArrayAdapter<DoubleValues>(context, 0, doubleValueList){
 
 
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+        var rootView : View? = convertView
+        if (convertView == null){
+            rootView = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
+        }
+
+        val name : TextView = rootView!!.findViewById(R.id.name)
+        val password : TextView = rootView.findViewById(R.id.password)
+
+        val doubleValueItem : DoubleValues = getItem(position)!!
+
+        name.text = doubleValueItem.name
+        password.text = doubleValueItem.password
+
+        return rootView
     }
 }

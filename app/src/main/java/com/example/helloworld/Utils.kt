@@ -32,6 +32,36 @@ val statesList: ArrayList<String> = ArrayList<String>().apply {
     add("HP")
     add("TM")
 }
+val nameList : ArrayList<String> = ArrayList<String>().apply {
+    add("Ankit")
+    add("Abhishek")
+    add("Ansh")
+    add("Ankit")
+    add("Abhishek")
+    add("Ansh")
+    add("Ankit")
+    add("Abhishek")
+    add("Ansh")
+    add("Ankit")
+    add("Abhishek")
+    add("Ansh")
+}
+
+val passwordList : ArrayList<String> = ArrayList<String>().apply {
+    add("#2323Apldpdfpk")
+    add("#2323Apldpdfpk")
+    add("#2323Apldpdfpk")
+    add("#2323Apldpdfpk")
+    add("#2323Apldpdfpk")
+    add("#2323Apldpdfpk")
+    add("#2323Apldpdfpk")
+    add("#2323Apldpdfpk")
+    add("#2323Apldpdfpk")
+    add("#2323Apldpdfpk")
+    add("#2323Apldpdfpk")
+    add("#2323Apldpdfpk")
+}
+
 
 private val passwordRegex: String =
     "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=()])(?=\\S+$).{8,20}$"
