@@ -10,6 +10,7 @@ import android.util.Patterns
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
+import com.bumptech.glide.Glide
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
@@ -24,6 +25,7 @@ class FirstActivity : AppCompatActivity() {
     private lateinit var createAccountButton: Button
     private lateinit var forgotPassword : TextView
     private lateinit var signInSwitch : SwitchCompat
+    private lateinit var thumbnail : ImageView
 //    private lateinit var ageSpinner : Spinner
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,6 +41,7 @@ class FirstActivity : AppCompatActivity() {
         createAccountButton = findViewById(R.id.create_account_button)
         forgotPassword = findViewById(R.id.forgot_password)
         signInSwitch = findViewById(R.id.sign_in_switch)
+        thumbnail = findViewById(R.id.thumbnail)
 //        ageSpinner = findViewById(R.id.spinner)
 
 //        initialiseSpinner(
@@ -49,6 +52,8 @@ class FirstActivity : AppCompatActivity() {
 //                Toast.makeText(this, "Position : $position", Toast.LENGTH_SHORT).show()
 //            }
 //        )
+
+        Glide.with(this).load(thumbnailUrl).into(thumbnail)
 
         signInButton.setOnClickListener {
             val emailString : String = emailBox.text.toString()

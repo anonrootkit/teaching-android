@@ -4,6 +4,7 @@ import java.util.regex.Matcher
 import java.util.regex.Pattern
 
 
+val thumbnailUrl : String = "https://image.flaticon.com/icons/png/512/281/281769.png"
 private var PASSWORD_MIN_LENGTH: Int = 8
 private var EMAIL_MIN_SIZE: Int = 8
 private var CORRECT_EMAIL: String = "ankit@ankit.com"
