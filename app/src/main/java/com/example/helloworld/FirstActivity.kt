@@ -5,6 +5,7 @@ package com.example.helloworld
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.util.Patterns
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -28,6 +29,8 @@ class FirstActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_first)
+
+        Log.v("Unique name", "onCreate method k andr hai abhi")
 
         // Initialise views
         emailBox = findViewById(R.id.email)
@@ -103,4 +106,24 @@ class FirstActivity : AppCompatActivity() {
 
     }
 
+
+    override fun onResume() {
+        super.onResume()
+        Log.v("Unique name", "onResume method k andr hai abhi")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.v("Unique name", "onPause method k andr hai abhi")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.v("Unique name", "onStop method k andr hai abhi")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.v("Unique name", "onDestroy method k andr hai abhi")
+    }
 }
