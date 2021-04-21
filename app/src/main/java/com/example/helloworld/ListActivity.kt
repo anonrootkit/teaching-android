@@ -6,10 +6,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.LinearLayout
-import android.widget.ListView
-import android.widget.TextView
+import android.widget.*
+import com.bumptech.glide.Glide
 
 class ListActivity : AppCompatActivity() {
 
@@ -22,26 +20,20 @@ class ListActivity : AppCompatActivity() {
 
         listView = findViewById(R.id.listView)
 
-        val doubleValueList : ArrayList<DoubleValues> = ArrayList()
-
-        for (index in 0 until nameList.size){
-            val doubleValue : DoubleValues = DoubleValues(
-                name = nameList[index],
-                password = passwordList[index]
-            )
-            doubleValueList.add(doubleValue)
-        }
-
-        val customAdapter : CustomArrayAdapter = CustomArrayAdapter(this, doubleValueList)
+        val customAdapter : CustomArrayAdapter = CustomArrayAdapter(this, usersList)
         listView.adapter = customAdapter
 
     }
 }
 
-data class DoubleValues(val name : String, val password : String)
+data class User(
+    val name : String,
+    val userName : String,
+    val profilePic : String
+)
 
-class CustomArrayAdapter(context: Context, doubleValueList : ArrayList<DoubleValues>)
-    : ArrayAdapter<DoubleValues>(context, 0, doubleValueList){
+class CustomArrayAdapter(context: Context, doubleValueList : ArrayList<User>)
+    : ArrayAdapter<User>(context, 0, doubleValueList){
 
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
@@ -52,11 +44,14 @@ class CustomArrayAdapter(context: Context, doubleValueList : ArrayList<DoubleVal
 
         val name : TextView = rootView!!.findViewById(R.id.name)
         val password : TextView = rootView.findViewById(R.id.password)
+        val profilePic : ImageView = rootView.findViewById(R.id.profile_pic)
 
-        val doubleValueItem : DoubleValues = getItem(position)!!
+        val user : User = getItem(position)!!
 
-        name.text = doubleValueItem.name
-        password.text = doubleValueItem.password
+        name.text = user.name
+        password.text = user.userName
+
+        Glide.with(rootView).load(user.profilePic).into(profilePic)
 
         return rootView
     }
