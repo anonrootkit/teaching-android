@@ -1,6 +1,7 @@
 package com.example.helloworld
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 
 class ListActivity : AppCompatActivity() {
 
@@ -22,6 +24,21 @@ class ListActivity : AppCompatActivity() {
 
         val customAdapter : CustomArrayAdapter = CustomArrayAdapter(this, usersList)
         listView.adapter = customAdapter
+
+        listView.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+            val intent : Intent = Intent(this@ListActivity, UserActivity::class.java)
+
+            val selectedItem : User = usersList[position]
+
+            val bundle : Bundle = Bundle()
+            bundle.putString("USERNAME", selectedItem.name)
+            bundle.putString("PASSWORD", selectedItem.userName)
+            bundle.putString("THUMBNAIL", selectedItem.profilePic)
+
+            intent.putExtras(bundle)
+
+            startActivity(intent)
+        }
 
     }
 }
@@ -51,7 +68,11 @@ class CustomArrayAdapter(context: Context, doubleValueList : ArrayList<User>)
         name.text = user.name
         password.text = user.userName
 
-        Glide.with(rootView).load(user.profilePic).into(profilePic)
+        Glide.with(rootView)
+            .load(user.profilePic)
+            .placeholder(R.mipmap.ic_launcher)
+            .apply(RequestOptions.circleCropTransform())
+            .into(profilePic)
 
         return rootView
     }
