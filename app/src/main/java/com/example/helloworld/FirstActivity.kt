@@ -1,9 +1,11 @@
-@file:Suppress("PrivatePropertyName")
+@file:Suppress("PrivatePropertyName", "DEPRECATION")
 
 package com.example.helloworld
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.text.TextUtils
 import android.util.Log
 import android.util.Patterns
@@ -33,6 +35,24 @@ class FirstActivity : AppCompatActivity() {
         setContentView(R.layout.activity_first)
 
         Log.v("Unique name", "onCreate method k andr hai abhi")
+
+        val emailAndPasswordList = getEmailAndPassword()
+        if (!emailAndPasswordList.isNullOrEmpty()){
+
+            val openHomeActivityIntent : Intent = Intent(this, HomeActivity::class.java)
+
+            val bundle : Bundle = Bundle()
+            bundle.putString("email_text", emailAndPasswordList[0])
+            bundle.putString("password_text", emailAndPasswordList[1])
+
+            openHomeActivityIntent.putExtras(bundle)
+
+            startActivity(openHomeActivityIntent)
+            finish()
+
+            Toast.makeText(this, "Welcome, Welcome! Ankit.", Toast.LENGTH_SHORT).show()
+
+        }
 
         // Initialise views
         emailBox = findViewById(R.id.email)
@@ -68,6 +88,7 @@ class FirstActivity : AppCompatActivity() {
 
                         val signInSuccessful : Boolean = true
                         if (signInSuccessful){
+                            storeEmailAndPassword(emailString, passwordString)
 
                             val openHomeActivityIntent : Intent = Intent(this, HomeActivity::class.java)
 
@@ -111,24 +132,23 @@ class FirstActivity : AppCompatActivity() {
 
     }
 
+    fun getEmailAndPassword(): List<String>? {
+        val preferences : SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
 
-    override fun onResume() {
-        super.onResume()
-        Log.v("Unique name", "onResume method k andr hai abhi")
+        val emailString : String = preferences.getString("EMAIL_STRING", null) ?: return null
+        val passwordString : String = preferences.getString("PASSWORD_STRING", null) ?: return null
+
+        return listOf(emailString, passwordString)
+
     }
 
-    override fun onPause() {
-        super.onPause()
-        Log.v("Unique name", "onPause method k andr hai abhi")
-    }
+    private fun storeEmailAndPassword(email : String, password : String) {
+        val preferences : SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val edit = preferences.edit()
 
-    override fun onStop() {
-        super.onStop()
-        Log.v("Unique name", "onStop method k andr hai abhi")
-    }
+        edit.putString("EMAIL_STRING", email)
+        edit.putString("PASSWORD_STRING", password)
 
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.v("Unique name", "onDestroy method k andr hai abhi")
+        edit.apply()
     }
 }

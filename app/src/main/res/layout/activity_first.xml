@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -13,13 +13,12 @@
         tools:context=".FirstActivity">
 
         <ImageView
+            android:id="@+id/thumbnail"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="24dp"
-            android:src="@mipmap/ic_launcher"
-            android:id="@+id/thumbnail"
-            />
+            android:src="@mipmap/ic_launcher" />
 
         <TextView
             android:layout_width="match_parent"
@@ -51,13 +50,12 @@
             android:inputType="textPassword" />
 
         <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/sign_in_switch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Are you human ? "
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
-            android:id="@+id/sign_in_switch"
-            />
+            android:text="Are you human ? " />
 
         <Button
             android:id="@+id/sign_in_button"
@@ -67,8 +65,8 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="24dp"
-            android:text="Sign In"
             android:background="@drawable/round_shape"
+            android:text="Sign In"
             android:textSize="16sp" />
 
         <TextView
@@ -115,25 +113,26 @@
         </RelativeLayout>
 
         <Button
+            android:id="@+id/create_account_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
-            android:text="Create Account"
-            android:id="@+id/create_account_button"
+            android:layout_marginBottom="24dp"
             android:background="@drawable/round_shape"
-            app:backgroundTint="@color/teal_200"
-            android:textColor="@color/white" />
+            android:text="Create Account"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/teal_200" />
 
-<!--        <include-->
-<!--            layout="@layout/spinner_layout"-->
-<!--            android:layout_marginStart="24dp"-->
-<!--            android:layout_marginEnd="24dp"-->
-<!--            android:layout_marginTop="24dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_width="match_parent"-->
-<!--            />-->
+        <!--        <include-->
+        <!--            layout="@layout/spinner_layout"-->
+        <!--            android:layout_marginStart="24dp"-->
+        <!--            android:layout_marginEnd="24dp"-->
+        <!--            android:layout_marginTop="24dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            />-->
 
     </LinearLayout>
 
